@@ -1,0 +1,25 @@
+{
+  "name": "node-crawler",
+  "version": "1.0.0",
+  "description": "A simple web crawler",
+  "main": "./server/app.js",
+  "scripts": {
+    "start": "nodemon ./server/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "crawler",
+    "nodejs"
+  ],
+  "author": "Iban Balasch",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "cheerio": "^1.0.0-rc.2",
+    "crawler": "^1.1.4",
+    "express": "^4.16.3",
+    "method-override": "^2.3.10",
+    "mongoose": "^5.1.6",
+    "properties-reader": "0.0.16"
+  }
+}
