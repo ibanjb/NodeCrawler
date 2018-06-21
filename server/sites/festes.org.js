@@ -1,3 +1,4 @@
+'use strict';
 
 var Crawler          = require("crawler"),
     PropertiesReader = require('properties-reader'),
@@ -15,7 +16,6 @@ exports.craw = function() {
             }else{
                 var $ = res.$;
                 var items = $('table font.titol').length;
-
                 for (var i=0; i < items; i++) {                    
 
                     var _title = $('table font.titol')[i].textContent;
