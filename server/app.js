@@ -56,6 +56,6 @@ app.listen(port, function() {
 
 // Crawler testing
 console.log('begin...');
-var festesCrawler = require('./sites/festes.org');
+var festesCrawler = require('./sites/festes.catalunya');
 festesCrawler.craw();
 console.log('...end');
