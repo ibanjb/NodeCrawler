@@ -55,7 +55,8 @@ app.listen(port, function() {
 });
 
 // Crawler testing
-console.log('begin...');
-var festesCrawler = require('./sites/festes.org');
-festesCrawler.craw();
-console.log('...end');
+
+//var festesOrgCrawler = require('./sites/festes.org');
+//festesOrgCrawler.craw();
+var festesCatCrawler = require('./sites/festes.catalunya');
+festesCatCrawler.craw();

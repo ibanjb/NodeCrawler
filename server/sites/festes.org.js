@@ -18,10 +18,10 @@ exports.craw = function() {
 
                 for (var i=0; i < items; i++) {                    
 
-                    var _title = $('table font.titol')[i].text();
-                    var _summary = $('table font.titol')[i].text();
-                    var _description = $('table font.text_petit')[i].text();
-                    var _location = $('table font.subtitol_p')[i].text();
+                    var _title = $('table font.titol')[i].textContent;
+                    var _summary = $('table font.titol')[i].textContent;
+                    var _description = $('table font.text_petit')[i].textContent;
+                    var _location = $('table font.subtitol_p')[i].textContent;
 
                     var festa = new Festa({
                         title:          _title,
