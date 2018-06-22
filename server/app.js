@@ -46,6 +46,7 @@ properties.get('methods.festes.findById') ?  festes.route('/festes/:id').get(Fes
 properties.get('methods.festes.findByDate') ?  festes.route('/festes/date/:date').get(FestesCtrl.findByDate): null;
 properties.get('methods.festes.updateFesta') ?  festes.route('/festes/:id').put(FestesCtrl.update): null;
 properties.get('methods.festes.deleteFesta') ?  festes.route('/festes/:id').delete(FestesCtrl.delete): null;
+properties.get('methods.festes.load') ?  festes.route('/load').get(FestesCtrl.load): null;
 
 app.use('/api', festes);
 
@@ -54,9 +55,3 @@ var port = properties.get('server.port')
 app.listen(port, function() {
   console.log("Node server running on http://localhost:" + port);
 });
-
-// Crawler testing
-//var festesOrgCrawler = require('./sites/festes.org');
-//festesOrgCrawler.craw();
-//var festesCatCrawler = require('./sites/festes.catalunya');
-//festesCatCrawler.craw();

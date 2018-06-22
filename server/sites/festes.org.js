@@ -28,8 +28,7 @@ exports.craw = function() {
                         summary:        _summary,
                         description:    _description,
                         location:       _location,
-                        dateini:        '2018-06-24T00:00:00',
-                        dateend:        '2018-06-24T00:00:00',
+                        date:           '2018-06-24',
                         lat:            0,
                         lng:            0,
                         type:           'other'

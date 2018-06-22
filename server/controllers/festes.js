@@ -94,3 +94,15 @@ exports.delete = function(req, res) {
 		})
 	});
 };
+
+//GET - Load database using crawler
+//Example: localhost/api/load
+//
+exports.load = function(req, res) {
+	var festesOrgCrawler = require('../sites/festes.org');
+	var festesCatCrawler = require('../sites/festes.catalunya');
+
+	//festesOrgCrawler.craw();	
+	festesCatCrawler.craw();	
+	res.status(200).send('loaded!');
+}
