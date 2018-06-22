@@ -1,5 +1,7 @@
-var mongoose 	= require('mongoose'),
-	Festa  		= mongoose.model('Festa');
+var mongoose 		 = require('mongoose'),
+	Festa  			 = mongoose.model('Festa')
+	PropertiesReader = require('properties-reader'),
+    properties       = PropertiesReader('./server/config/festes.ini');
 
 //GET - Return all
 exports.findAll = function(req, res) {
@@ -35,12 +37,16 @@ exports.findByDate = function(req, res) {
 }
 
 exports.saveData = function(festa) {
-	festa.save(function(err) {
-		if (err) {
-            return false;
-        }
-        return true;
-	});
+	if (properties.get('server.save.data')) {
+		festa.save(function(err) {
+			if (err) {
+				throw err;
+			} else {
+				return true;
+			}
+		});
+	}
+	
 };
 
 //POST - Insert
