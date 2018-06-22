@@ -21,6 +21,19 @@ exports.findById = function(req, res) {
 	});
 };
 
+exports.findByDate = function(req, res) {
+	
+}
+
+exports.saveData = function(festa) {
+	festa.save(function(err, festa) {
+		if (err) {
+            return false;
+        }
+        return true;
+	});
+};
+
 //POST - Insert
 exports.add = function(req, res) {
 	var festa = new Festa({
@@ -34,12 +47,12 @@ exports.add = function(req, res) {
         lng:            req.body.lng,
         type:           req.body.type
 	});
-	festa.save(function(err, festa) {
-		if (err) {
-            return res.status(500).send(500, err.message);
-        }
-        res.status(200).jsonp(festa);
-	});
+	var result = saveData(festa);
+	if (result) {
+		return res.status(200).jsonp(festa);		
+	} else {
+		return res.status(500).send(500, err.message);
+	}        	
 };
 
 //PUT - Update by Id

@@ -35,7 +35,6 @@ exports.craw = function() {
                         type:           'other'
                     });
                     console.log(festa);
-
                 }
             }
             done();

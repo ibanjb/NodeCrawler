@@ -43,6 +43,7 @@ var festes = express.Router();
 properties.get('methods.festes.findAllFestes') ?  festes.route('/festes').get(FestesCtrl.findAll): null;
 properties.get('methods.festes.addFesta') ?  festes.route('/festes').post(FestesCtrl.add): null;
 properties.get('methods.festes.findById') ?  festes.route('/festes/:id').get(FestesCtrl.findById): null;
+properties.get('methods.festes.findByDate') ?  festes.route('/festes/:date').get(FestesCtrl.findByDate): null;
 properties.get('methods.festes.updateFesta') ?  festes.route('/festes/:id').put(FestesCtrl.update): null;
 properties.get('methods.festes.deleteFesta') ?  festes.route('/festes/:id').delete(FestesCtrl.delete): null;
 
@@ -55,8 +56,7 @@ app.listen(port, function() {
 });
 
 // Crawler testing
-
 //var festesOrgCrawler = require('./sites/festes.org');
 //festesOrgCrawler.craw();
-var festesCatCrawler = require('./sites/festes.catalunya');
-festesCatCrawler.craw();
+//var festesCatCrawler = require('./sites/festes.catalunya');
+//festesCatCrawler.craw();
