@@ -24,7 +24,9 @@ exports.craw = function() {
                         var dateUnformat = $(item).find("td").eq(3).text().split('-');
                         var dateFormatted = convertCustomToDate(dateUnformat);
                         var mainLocation = $(item).find("td").eq(2).text() + ', ' + $(item).find("td").eq(0).text();
-                        fillGeoLocationSave(mainTitle, mainLocation, dateFormatted, itemNumber);                        
+                        if (dateFormatted.indexOf('--') === -1) {
+                            fillGeoLocationSave(mainTitle, mainLocation, dateFormatted, itemNumber);
+                        }
                     }                    
                 });
             });
@@ -39,32 +41,31 @@ exports.craw = function() {
         var options = {
             provider: 'google',
             httpAdapter: 'https',
-            apiKey: 'AIzaSyC9LhggWHTMn2zJsAGVR38xaGiwQK_FT2E'
+            apiKey: properties.get('server.googlemap.api')
         };
         if (itemNumber === 1) {
             var geocoder = NodeGeocoder(options);
             geocoder.geocode(address)
                 .then(function(res) {
                     if (res.length > 0) {
-                        saveFesta(title, address, dateFormatted, dateFormatted, res[0].latitude, res[0].longitude);                        
+                        saveFesta(title, address, dateFormatted, res[0].latitude, res[0].longitude);                        
                     }
                 })
                 .catch(function(err) {
                     console.log(err);
                 });
         } else {
-            saveFesta(title, address, dateFormatted, dateFormatted, 0, 0);
+            saveFesta(title, address, dateFormatted, 0, 0);
         }
     }
 
-    function saveFesta(title, address, dateIni, dateEnd, latitude, longitude) {
+    function saveFesta(title, address, date, latitude, longitude) {
         var controller = require('../controllers/festes');
         var festa = new Festa({
             title:          title,
             description:    '',
             location:       address,
-            dateini:        dateIni,
-            dateend:        dateEnd,
+            date:           date,
             lat:            latitude,
             lng:            longitude,
             type:           'other'
@@ -75,7 +76,7 @@ exports.craw = function() {
     function convertCustomToDate(customDate) {
         var month = '';        
         switch (customDate[1]) {
-            case 'gen':
+            case 'gen' | 'ene':
                 month = '01';
                 break;
             case 'feb':
@@ -87,7 +88,7 @@ exports.craw = function() {
             case 'abr':
                 month = '04';
                 break;
-            case 'mai':
+            case 'mai' | 'may':
                 month = '05';
                 break;
             case 'jun':
@@ -108,11 +109,11 @@ exports.craw = function() {
             case 'nov':
                 month = '11';
                 break;
-            case 'des':
+            case 'des' | 'dic':
                 month = '12';
                 break;
-        };
-        var dateFormatted = '2018-' + month + '-' + customDate[0] + 'T00:00:00';
+        };        
+        var dateFormatted =  customDate[0] + '-' + month + '-2018';        
         return dateFormatted;
     }    
 };

@@ -21,12 +21,21 @@ exports.findById = function(req, res) {
 	});
 };
 
+//GET - Return by DateIni
+//Example: localhost/api/festes/date/21-01-2018
+//
 exports.findByDate = function(req, res) {
-	
+	console.log(req.params.date);
+	Festa.find({date: req.params.date}, function(err, festes) {
+		if (err) {
+			return res.status(500).send(500, err.message);
+		}
+		res.status(200).jsonp(festes);
+		});		
 }
 
 exports.saveData = function(festa) {
-	festa.save(function(err, festa) {
+	festa.save(function(err) {
 		if (err) {
             return false;
         }
@@ -41,8 +50,7 @@ exports.add = function(req, res) {
         summary:        req.body.summary,
 		description:    req.body.description,
 		location:       req.body.location,
-		dateini:        req.body.dateini,
-		dateend:        req.body.dateend,
+		date:        	req.body.date,
 		lat:            req.body.lat,
         lng:            req.body.lng,
         type:           req.body.type
@@ -62,8 +70,7 @@ exports.update  = function(req, res) {
         festa.summary       = req.body.summary;
 		festa.description   = req.body.description;
 		festa.location      = req.body.location;
-		festa.dateini       = req.body.dateini;
-		festa.dateend       = req.body.dateend;
+		festa.date	        = req.body.date;
 		festa.lat           = req.body.lat;
         festa.lng           = req.body.lng;
         festa.type          = req.body.type;

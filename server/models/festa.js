@@ -4,8 +4,7 @@ exports = module.exports = function(app, mongoose) {
         summary: 	    { type: String },
 		description: 	{ type: String },
 		location: 	    { type: String },
-		dateini:		{ type: Date },
-		dateend:		{ type: Date },
+		date:			{ type: String },
         lat:     	    { type: Number },
         lng:     	    { type: Number },
 		type: 		{
